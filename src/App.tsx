@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +9,9 @@ import StudyMaterials from "./pages/StudyMaterials";
 import ExamDates from "./pages/ExamDates";
 import Cutoffs from "./pages/Cutoffs";
 import NotFound from "./pages/NotFound";
+
+// Set the document title
+document.title = "appt.ppl - Student Prep Kit Portal";
 
 const queryClient = new QueryClient();
 

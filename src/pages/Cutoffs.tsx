@@ -15,17 +15,15 @@ import { LineChart, TrendingUp, TrendingDown, InfoIcon, AlertTriangle } from "lu
 const Cutoffs = () => {
   const [selectedYear, setSelectedYear] = useState("2023");
   
-  // Define test types
-  const testTypes = ["Engineering", "Medical", "Science", "Arts"];
+  // Updated test types
+  const testTypes = ["SCALER", "NSET"];
   
   // Generate cutoff data for each test type and month
   const generateCutoffData = () => {
     const data: Record<string, Record<string, any>> = {};
     
     testTypes.forEach(testType => {
-      const baseScore = testType === "Engineering" ? 85 : 
-                        testType === "Medical" ? 82 :
-                        testType === "Science" ? 75 : 70;
+      const baseScore = testType === "SCALER" ? 85 : 80;
       
       // Generate monthly data with slight variations
       data[testType] = {
@@ -112,7 +110,7 @@ const Cutoffs = () => {
       <Navbar />
       <main className="container px-4 py-8">
         <h1 className="text-3xl font-bold mb-2">Previous Cutoffs</h1>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           Analyze past cutoff trends to better understand competition levels.
         </p>
         
@@ -152,7 +150,7 @@ const Cutoffs = () => {
             <TabsContent key={type} value={type.toLowerCase()}>
               <div className="mb-4">
                 <h3 className="text-lg font-medium">{type} Exams - {selectedYear} Cutoffs</h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Monthly cutoff percentages by category.
                 </p>
               </div>
@@ -205,12 +203,12 @@ const Cutoffs = () => {
                       over the first half of the year.
                     </p>
                     
-                    <div className="bg-amber-50 p-4 rounded-md border border-amber-200">
+                    <div className="bg-accent/50 p-4 rounded-md border border-accent">
                       <div className="flex items-start">
                         <AlertTriangle className="h-5 w-5 text-amber-500 mt-0.5 mr-2 flex-shrink-0" />
                         <div>
-                          <h4 className="font-medium text-amber-800">Important Note</h4>
-                          <p className="text-sm text-amber-700 mt-1">
+                          <h4 className="font-medium">Important Note</h4>
+                          <p className="text-sm text-muted-foreground mt-1">
                             Cutoffs typically increase in the second half of the year due to higher competition. 
                             Plan your preparation accordingly and aim for scores at least 5% above the latest cutoffs.
                           </p>
@@ -226,12 +224,12 @@ const Cutoffs = () => {
       </main>
       
       {/* Footer */}
-      <footer className="bg-white border-t mt-16 py-6">
+      <footer className="bg-card border-t mt-16 py-6">
         <div className="container px-4">
           <div className="text-center">
-            <h3 className="font-bold text-primary">PrepPal</h3>
-            <p className="text-sm text-gray-500 mt-1">Helping students achieve academic excellence.</p>
-            <p className="text-xs text-gray-400 mt-4">© {new Date().getFullYear()} PrepPal. All rights reserved.</p>
+            <h3 className="font-bold text-primary">appt.ppl</h3>
+            <p className="text-sm text-muted-foreground mt-1">Helping students achieve academic excellence.</p>
+            <p className="text-xs text-muted-foreground/70 mt-4">© {new Date().getFullYear()} appt.ppl. All rights reserved.</p>
           </div>
         </div>
       </footer>
