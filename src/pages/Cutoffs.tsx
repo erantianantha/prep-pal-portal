@@ -15,68 +15,66 @@ import { LineChart, TrendingUp, TrendingDown, InfoIcon, AlertTriangle } from "lu
 const Cutoffs = () => {
   const [selectedYear, setSelectedYear] = useState("2023");
   
-  // Updated test types
-  const testTypes = ["SCALER", "NSET"];
+  // Updated to single test type
+  const testTypes = ["ScalerNSET"];
   
-  // Generate cutoff data for each test type and month
+  // Generate cutoff data for ScalerNSET
   const generateCutoffData = () => {
     const data: Record<string, Record<string, any>> = {};
     
-    testTypes.forEach(testType => {
-      const baseScore = testType === "SCALER" ? 85 : 80;
-      
-      // Generate monthly data with slight variations
-      data[testType] = {
-        "January": {
-          general: Math.round(baseScore + Math.random() * 3 - 1.5),
-          obc: Math.round(baseScore - 5 + Math.random() * 3 - 1.5),
-          sc: Math.round(baseScore - 10 + Math.random() * 3 - 1.5),
-          st: Math.round(baseScore - 15 + Math.random() * 3 - 1.5),
-          trend: Math.random() > 0.5 ? "up" : "down",
-          change: Math.round(Math.random() * 2 * 10) / 10
-        },
-        "February": {
-          general: Math.round(baseScore + 0.5 + Math.random() * 3 - 1.5),
-          obc: Math.round(baseScore - 4.5 + Math.random() * 3 - 1.5),
-          sc: Math.round(baseScore - 9.5 + Math.random() * 3 - 1.5),
-          st: Math.round(baseScore - 14.5 + Math.random() * 3 - 1.5),
-          trend: Math.random() > 0.5 ? "up" : "down",
-          change: Math.round(Math.random() * 2 * 10) / 10
-        },
-        "March": {
-          general: Math.round(baseScore + 1 + Math.random() * 3 - 1.5),
-          obc: Math.round(baseScore - 4 + Math.random() * 3 - 1.5),
-          sc: Math.round(baseScore - 9 + Math.random() * 3 - 1.5),
-          st: Math.round(baseScore - 14 + Math.random() * 3 - 1.5),
-          trend: Math.random() > 0.6 ? "up" : "down",
-          change: Math.round(Math.random() * 3 * 10) / 10
-        },
-        "April": {
-          general: Math.round(baseScore + 1.5 + Math.random() * 3 - 1.5),
-          obc: Math.round(baseScore - 3.5 + Math.random() * 3 - 1.5),
-          sc: Math.round(baseScore - 8.5 + Math.random() * 3 - 1.5),
-          st: Math.round(baseScore - 13.5 + Math.random() * 3 - 1.5),
-          trend: Math.random() > 0.3 ? "up" : "down",
-          change: Math.round(Math.random() * 2.5 * 10) / 10
-        },
-        "May": {
-          general: Math.round(baseScore + 2 + Math.random() * 3 - 1.5),
-          obc: Math.round(baseScore - 3 + Math.random() * 3 - 1.5),
-          sc: Math.round(baseScore - 8 + Math.random() * 3 - 1.5),
-          st: Math.round(baseScore - 13 + Math.random() * 3 - 1.5),
-          trend: "up",
-          change: Math.round(Math.random() * 2 * 10) / 10
-        },
-        "June": {
-          general: Math.round(baseScore + 3 + Math.random() * 3 - 1.5),
-          obc: Math.round(baseScore - 2 + Math.random() * 3 - 1.5),
-          sc: Math.round(baseScore - 7 + Math.random() * 3 - 1.5),
-          st: Math.round(baseScore - 12 + Math.random() * 3 - 1.5),
-          trend: "up",
-          change: Math.round(Math.random() * 3.5 * 10) / 10
-        }
-      };
-    });
+    const baseScore = 80;
+    
+    // Generate monthly data with slight variations
+    data["ScalerNSET"] = {
+      "January": {
+        general: Math.round(baseScore + Math.random() * 3 - 1.5),
+        obc: Math.round(baseScore - 5 + Math.random() * 3 - 1.5),
+        sc: Math.round(baseScore - 10 + Math.random() * 3 - 1.5),
+        st: Math.round(baseScore - 15 + Math.random() * 3 - 1.5),
+        trend: Math.random() > 0.5 ? "up" : "down",
+        change: Math.round(Math.random() * 2 * 10) / 10
+      },
+      "February": {
+        general: Math.round(baseScore + 0.5 + Math.random() * 3 - 1.5),
+        obc: Math.round(baseScore - 4.5 + Math.random() * 3 - 1.5),
+        sc: Math.round(baseScore - 9.5 + Math.random() * 3 - 1.5),
+        st: Math.round(baseScore - 14.5 + Math.random() * 3 - 1.5),
+        trend: Math.random() > 0.5 ? "up" : "down",
+        change: Math.round(Math.random() * 2 * 10) / 10
+      },
+      "March": {
+        general: Math.round(baseScore + 1 + Math.random() * 3 - 1.5),
+        obc: Math.round(baseScore - 4 + Math.random() * 3 - 1.5),
+        sc: Math.round(baseScore - 9 + Math.random() * 3 - 1.5),
+        st: Math.round(baseScore - 14 + Math.random() * 3 - 1.5),
+        trend: Math.random() > 0.6 ? "up" : "down",
+        change: Math.round(Math.random() * 3 * 10) / 10
+      },
+      "April": {
+        general: Math.round(baseScore + 1.5 + Math.random() * 3 - 1.5),
+        obc: Math.round(baseScore - 3.5 + Math.random() * 3 - 1.5),
+        sc: Math.round(baseScore - 8.5 + Math.random() * 3 - 1.5),
+        st: Math.round(baseScore - 13.5 + Math.random() * 3 - 1.5),
+        trend: Math.random() > 0.3 ? "up" : "down",
+        change: Math.round(Math.random() * 2.5 * 10) / 10
+      },
+      "May": {
+        general: Math.round(baseScore + 2 + Math.random() * 3 - 1.5),
+        obc: Math.round(baseScore - 3 + Math.random() * 3 - 1.5),
+        sc: Math.round(baseScore - 8 + Math.random() * 3 - 1.5),
+        st: Math.round(baseScore - 13 + Math.random() * 3 - 1.5),
+        trend: "up",
+        change: Math.round(Math.random() * 2 * 10) / 10
+      },
+      "June": {
+        general: Math.round(baseScore + 3 + Math.random() * 3 - 1.5),
+        obc: Math.round(baseScore - 2 + Math.random() * 3 - 1.5),
+        sc: Math.round(baseScore - 7 + Math.random() * 3 - 1.5),
+        st: Math.round(baseScore - 12 + Math.random() * 3 - 1.5),
+        trend: "up",
+        change: Math.round(Math.random() * 3.5 * 10) / 10
+      }
+    };
     
     return data;
   };
