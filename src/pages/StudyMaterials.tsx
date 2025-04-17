@@ -6,7 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Download, Search, Book, FileText, Video, PenTool } from "lucide-react";
+import { Download, Search, Book, FileText, Video, PenTool, Link as LinkIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const StudyMaterials = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,7 +21,8 @@ const StudyMaterials = () => {
         description: "Comprehensive textbook covering algebra, calculus, and number theory",
         type: "PDF",
         size: "12.4 MB",
-        date: "2023-10-15"
+        date: "2023-10-15",
+        url: "https://example.com/math-textbook.pdf"
       },
       {
         id: 2,
@@ -29,7 +31,8 @@ const StudyMaterials = () => {
         description: "Complete guide to mechanics, thermodynamics, and optics",
         type: "PDF",
         size: "18.7 MB", 
-        date: "2023-11-03"
+        date: "2023-11-03",
+        url: "https://example.com/physics-principles.pdf"
       },
       {
         id: 3,
@@ -38,7 +41,8 @@ const StudyMaterials = () => {
         description: "In-depth coverage of organic chemistry concepts and reactions",
         type: "PDF",
         size: "15.2 MB",
-        date: "2023-09-20"
+        date: "2023-09-20",
+        url: "https://example.com/chem-essentials.pdf"
       }
     ],
     notes: [
@@ -49,7 +53,8 @@ const StudyMaterials = () => {
         description: "Concise notes covering all key linear algebra concepts",
         type: "PDF",
         size: "4.3 MB",
-        date: "2023-12-05" 
+        date: "2023-12-05",
+        url: "https://example.com/linear-algebra.pdf"
       },
       {
         id: 5,
@@ -58,7 +63,8 @@ const StudyMaterials = () => {
         description: "Detailed notes on quantum mechanics fundamentals",
         type: "PDF",
         size: "5.8 MB",
-        date: "2024-01-12"
+        date: "2024-01-12",
+        url: "https://example.com/quantum-notes.pdf"
       },
       {
         id: 6,
@@ -67,7 +73,8 @@ const StudyMaterials = () => {
         description: "Handy reference notes for biological systems and processes",
         type: "PDF",
         size: "7.1 MB",
-        date: "2023-12-28"
+        date: "2023-12-28",
+        url: "https://example.com/bio-reference.pdf"
       }
     ],
     videos: [
@@ -78,7 +85,8 @@ const StudyMaterials = () => {
         description: "Video series explaining differential and integral calculus",
         type: "Video",
         duration: "4h 32m",
-        date: "2024-01-05"
+        date: "2024-01-05",
+        url: "https://example.com/calculus-videos"
       },
       {
         id: 8,
@@ -87,7 +95,8 @@ const StudyMaterials = () => {
         description: "Visual guide to essential laboratory procedures",
         type: "Video",
         duration: "2h 45m",
-        date: "2023-11-18"
+        date: "2023-11-18",
+        url: "https://example.com/chem-lab-videos"
       },
       {
         id: 9,
@@ -96,7 +105,8 @@ const StudyMaterials = () => {
         description: "Introduction to programming concepts and practices",
         type: "Video",
         duration: "5h 15m",
-        date: "2024-02-02"
+        date: "2024-02-02",
+        url: "https://example.com/programming-videos"
       }
     ],
     practice: [
@@ -107,7 +117,8 @@ const StudyMaterials = () => {
         description: "Collection of practice problems for comprehensive revision",
         type: "PDF",
         size: "3.7 MB",
-        date: "2023-10-22"
+        date: "2023-10-22",
+        url: "https://example.com/math-problems.pdf"
       },
       {
         id: 11,
@@ -116,7 +127,8 @@ const StudyMaterials = () => {
         description: "Problem-solving workbook with step-by-step solutions",
         type: "PDF", 
         size: "5.2 MB",
-        date: "2024-01-15"
+        date: "2024-01-15",
+        url: "https://example.com/physics-problems.pdf"
       },
       {
         id: 12,
@@ -125,7 +137,8 @@ const StudyMaterials = () => {
         description: "Complete set of mock tests simulating actual exam conditions",
         type: "ZIP",
         size: "24.8 MB",
-        date: "2024-01-30"
+        date: "2024-01-30",
+        url: "https://example.com/mock-tests.zip"
       }
     ]
   };
@@ -140,6 +153,7 @@ const StudyMaterials = () => {
     date: string;
     size?: string;
     duration?: string;
+    url: string;
   };
 
   const filteredMaterials = (type: keyof typeof materials) => {
@@ -165,13 +179,13 @@ const StudyMaterials = () => {
       <Navbar />
       <main className="container px-4 py-8">
         <h1 className="text-3xl font-bold mb-2">Study Materials</h1>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           Access comprehensive study materials to excel in your exams.
         </p>
         
         {/* Search Bar */}
         <div className="relative mb-6">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
             type="search"
             placeholder="Search by title, subject or description..."
@@ -205,34 +219,51 @@ const StudyMaterials = () => {
           <TabsContent value="textbooks">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredMaterials("textbooks").map((item) => (
-                <Card key={item.id}>
+                <Card key={item.id} className="transition-shadow hover:shadow-md">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <Badge variant="outline">{item.subject}</Badge>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm text-muted-foreground">
                         {getIcon(item.type)}
                         <span className="ml-1">{item.type}</span>
                       </div>
                     </div>
-                    <CardTitle className="mt-2">{item.title}</CardTitle>
+                    <CardTitle className="mt-2">
+                      <a 
+                        href={item.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-primary hover:underline flex items-center"
+                      >
+                        {item.title}
+                        <LinkIcon className="h-3 w-3 ml-1 inline" />
+                      </a>
+                    </CardTitle>
                     <CardDescription>{item.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-muted-foreground">
                       Size: {item.size || 'N/A'} • Added: {new Date(item.date).toLocaleDateString()}
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button variant="outline" className="w-full">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download
-                    </Button>
+                    <a 
+                      href={item.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-full"
+                    >
+                      <Button variant="outline" className="w-full">
+                        <Download className="h-4 w-4 mr-2" />
+                        Download
+                      </Button>
+                    </a>
                   </CardFooter>
                 </Card>
               ))}
               {filteredMaterials("textbooks").length === 0 && (
                 <div className="col-span-full text-center py-12">
-                  <p className="text-gray-500">No textbooks found matching "{searchTerm}"</p>
+                  <p className="text-muted-foreground">No textbooks found matching "{searchTerm}"</p>
                 </div>
               )}
             </div>
@@ -242,34 +273,51 @@ const StudyMaterials = () => {
           <TabsContent value="notes">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredMaterials("notes").map((item) => (
-                <Card key={item.id}>
+                <Card key={item.id} className="transition-shadow hover:shadow-md">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <Badge variant="outline">{item.subject}</Badge>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm text-muted-foreground">
                         {getIcon(item.type)}
                         <span className="ml-1">{item.type}</span>
                       </div>
                     </div>
-                    <CardTitle className="mt-2">{item.title}</CardTitle>
+                    <CardTitle className="mt-2">
+                      <a 
+                        href={item.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-primary hover:underline flex items-center"
+                      >
+                        {item.title}
+                        <LinkIcon className="h-3 w-3 ml-1 inline" />
+                      </a>
+                    </CardTitle>
                     <CardDescription>{item.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-muted-foreground">
                       Size: {item.size || 'N/A'} • Added: {new Date(item.date).toLocaleDateString()}
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button variant="outline" className="w-full">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download
-                    </Button>
+                    <a 
+                      href={item.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-full"
+                    >
+                      <Button variant="outline" className="w-full">
+                        <Download className="h-4 w-4 mr-2" />
+                        Download
+                      </Button>
+                    </a>
                   </CardFooter>
                 </Card>
               ))}
               {filteredMaterials("notes").length === 0 && (
                 <div className="col-span-full text-center py-12">
-                  <p className="text-gray-500">No notes found matching "{searchTerm}"</p>
+                  <p className="text-muted-foreground">No notes found matching "{searchTerm}"</p>
                 </div>
               )}
             </div>
@@ -279,34 +327,51 @@ const StudyMaterials = () => {
           <TabsContent value="videos">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredMaterials("videos").map((item) => (
-                <Card key={item.id}>
+                <Card key={item.id} className="transition-shadow hover:shadow-md">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <Badge variant="outline">{item.subject}</Badge>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm text-muted-foreground">
                         <Video className="h-4 w-4" />
                         <span className="ml-1">Video</span>
                       </div>
                     </div>
-                    <CardTitle className="mt-2">{item.title}</CardTitle>
+                    <CardTitle className="mt-2">
+                      <a 
+                        href={item.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-primary hover:underline flex items-center"
+                      >
+                        {item.title}
+                        <LinkIcon className="h-3 w-3 ml-1 inline" />
+                      </a>
+                    </CardTitle>
                     <CardDescription>{item.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-muted-foreground">
                       Duration: {item.duration || 'N/A'} • Added: {new Date(item.date).toLocaleDateString()}
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button variant="outline" className="w-full">
-                      <Video className="h-4 w-4 mr-2" />
-                      Watch Now
-                    </Button>
+                    <a 
+                      href={item.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-full"
+                    >
+                      <Button variant="outline" className="w-full">
+                        <Video className="h-4 w-4 mr-2" />
+                        Watch Now
+                      </Button>
+                    </a>
                   </CardFooter>
                 </Card>
               ))}
               {filteredMaterials("videos").length === 0 && (
                 <div className="col-span-full text-center py-12">
-                  <p className="text-gray-500">No videos found matching "{searchTerm}"</p>
+                  <p className="text-muted-foreground">No videos found matching "{searchTerm}"</p>
                 </div>
               )}
             </div>
@@ -316,34 +381,51 @@ const StudyMaterials = () => {
           <TabsContent value="practice">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredMaterials("practice").map((item) => (
-                <Card key={item.id}>
+                <Card key={item.id} className="transition-shadow hover:shadow-md">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <Badge variant="outline">{item.subject}</Badge>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm text-muted-foreground">
                         {getIcon(item.type)}
                         <span className="ml-1">{item.type}</span>
                       </div>
                     </div>
-                    <CardTitle className="mt-2">{item.title}</CardTitle>
+                    <CardTitle className="mt-2">
+                      <a 
+                        href={item.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-primary hover:underline flex items-center"
+                      >
+                        {item.title}
+                        <LinkIcon className="h-3 w-3 ml-1 inline" />
+                      </a>
+                    </CardTitle>
                     <CardDescription>{item.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-muted-foreground">
                       Size: {item.size || 'N/A'} • Added: {new Date(item.date).toLocaleDateString()}
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button variant="outline" className="w-full">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download
-                    </Button>
+                    <a 
+                      href={item.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-full"
+                    >
+                      <Button variant="outline" className="w-full">
+                        <Download className="h-4 w-4 mr-2" />
+                        Download
+                      </Button>
+                    </a>
                   </CardFooter>
                 </Card>
               ))}
               {filteredMaterials("practice").length === 0 && (
                 <div className="col-span-full text-center py-12">
-                  <p className="text-gray-500">No practice materials found matching "{searchTerm}"</p>
+                  <p className="text-muted-foreground">No practice materials found matching "{searchTerm}"</p>
                 </div>
               )}
             </div>
@@ -352,12 +434,12 @@ const StudyMaterials = () => {
       </main>
       
       {/* Footer */}
-      <footer className="bg-white border-t mt-16 py-6">
+      <footer className="bg-card border-t mt-16 py-6">
         <div className="container px-4">
           <div className="text-center">
             <h3 className="font-bold text-primary">PrepPal</h3>
-            <p className="text-sm text-gray-500 mt-1">Helping students achieve academic excellence.</p>
-            <p className="text-xs text-gray-400 mt-4">© {new Date().getFullYear()} PrepPal. All rights reserved.</p>
+            <p className="text-sm text-muted-foreground mt-1">Helping students achieve academic excellence.</p>
+            <p className="text-xs text-muted-foreground/70 mt-4">© {new Date().getFullYear()} PrepPal. All rights reserved.</p>
           </div>
         </div>
       </footer>

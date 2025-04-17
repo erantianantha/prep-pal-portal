@@ -15,71 +15,42 @@ import { LineChart, TrendingUp, TrendingDown, InfoIcon, AlertTriangle } from "lu
 const Cutoffs = () => {
   const [selectedYear, setSelectedYear] = useState("2023");
   
-  // Updated to single test type
+  // Single test type
   const testTypes = ["ScalerNSET"];
   
-  // Generate cutoff data for ScalerNSET
-  const generateCutoffData = () => {
-    const data: Record<string, Record<string, any>> = {};
-    
-    const baseScore = 80;
-    
-    // Generate monthly data with slight variations
-    data["ScalerNSET"] = {
-      "January": {
-        general: Math.round(baseScore + Math.random() * 3 - 1.5),
-        obc: Math.round(baseScore - 5 + Math.random() * 3 - 1.5),
-        sc: Math.round(baseScore - 10 + Math.random() * 3 - 1.5),
-        st: Math.round(baseScore - 15 + Math.random() * 3 - 1.5),
-        trend: Math.random() > 0.5 ? "up" : "down",
-        change: Math.round(Math.random() * 2 * 10) / 10
-      },
-      "February": {
-        general: Math.round(baseScore + 0.5 + Math.random() * 3 - 1.5),
-        obc: Math.round(baseScore - 4.5 + Math.random() * 3 - 1.5),
-        sc: Math.round(baseScore - 9.5 + Math.random() * 3 - 1.5),
-        st: Math.round(baseScore - 14.5 + Math.random() * 3 - 1.5),
-        trend: Math.random() > 0.5 ? "up" : "down",
-        change: Math.round(Math.random() * 2 * 10) / 10
-      },
-      "March": {
-        general: Math.round(baseScore + 1 + Math.random() * 3 - 1.5),
-        obc: Math.round(baseScore - 4 + Math.random() * 3 - 1.5),
-        sc: Math.round(baseScore - 9 + Math.random() * 3 - 1.5),
-        st: Math.round(baseScore - 14 + Math.random() * 3 - 1.5),
-        trend: Math.random() > 0.6 ? "up" : "down",
-        change: Math.round(Math.random() * 3 * 10) / 10
-      },
-      "April": {
-        general: Math.round(baseScore + 1.5 + Math.random() * 3 - 1.5),
-        obc: Math.round(baseScore - 3.5 + Math.random() * 3 - 1.5),
-        sc: Math.round(baseScore - 8.5 + Math.random() * 3 - 1.5),
-        st: Math.round(baseScore - 13.5 + Math.random() * 3 - 1.5),
-        trend: Math.random() > 0.3 ? "up" : "down",
-        change: Math.round(Math.random() * 2.5 * 10) / 10
-      },
-      "May": {
-        general: Math.round(baseScore + 2 + Math.random() * 3 - 1.5),
-        obc: Math.round(baseScore - 3 + Math.random() * 3 - 1.5),
-        sc: Math.round(baseScore - 8 + Math.random() * 3 - 1.5),
-        st: Math.round(baseScore - 13 + Math.random() * 3 - 1.5),
-        trend: "up",
-        change: Math.round(Math.random() * 2 * 10) / 10
-      },
-      "June": {
-        general: Math.round(baseScore + 3 + Math.random() * 3 - 1.5),
-        obc: Math.round(baseScore - 2 + Math.random() * 3 - 1.5),
-        sc: Math.round(baseScore - 7 + Math.random() * 3 - 1.5),
-        st: Math.round(baseScore - 12 + Math.random() * 3 - 1.5),
-        trend: "up",
-        change: Math.round(Math.random() * 3.5 * 10) / 10
-      }
-    };
-    
-    return data;
+  // Simplified cutoff data without categories
+  const nsetCutoffData = {
+    "January": {
+      score: "36-38%",
+      trend: "up",
+      change: 1.5
+    },
+    "February": {
+      score: "35%",
+      trend: "down",
+      change: 2.1
+    },
+    "March": {
+      score: "38-40%",
+      trend: "up",
+      change: 3.2
+    },
+    "April": {
+      score: "37%",
+      trend: "down",
+      change: 1.8
+    },
+    "May": {
+      score: "39%",
+      trend: "up",
+      change: 2.4
+    },
+    "June": {
+      score: "41%", 
+      trend: "up",
+      change: 2.0
+    }
   };
-  
-  const cutoffData = generateCutoffData();
   
   // Helper function to get trend icon
   const getTrendIcon = (trend: string, change: number) => {
@@ -109,7 +80,7 @@ const Cutoffs = () => {
       <main className="container px-4 py-8">
         <h1 className="text-3xl font-bold mb-2">Previous Cutoffs</h1>
         <p className="text-muted-foreground mb-6">
-          Analyze past cutoff trends to better understand competition levels.
+          Analyze past NSET cutoff trends to better understand competition levels.
         </p>
         
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
@@ -149,7 +120,7 @@ const Cutoffs = () => {
               <div className="mb-4">
                 <h3 className="text-lg font-medium">{type} Exams - {selectedYear} Cutoffs</h3>
                 <p className="text-sm text-muted-foreground">
-                  Monthly cutoff percentages by category.
+                  Monthly cutoff percentages for {type}.
                 </p>
               </div>
               
@@ -159,27 +130,14 @@ const Cutoffs = () => {
                     <CardHeader className="pb-2">
                       <div className="flex justify-between items-center">
                         <CardTitle className="text-lg">{month}</CardTitle>
-                        {getTrendIcon(cutoffData[type][month].trend, cutoffData[type][month].change)}
+                        {getTrendIcon(nsetCutoffData[month as keyof typeof nsetCutoffData].trend, 
+                                    nsetCutoffData[month as keyof typeof nsetCutoffData].change)}
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="space-y-3">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">General</span>
-                          <span className="font-medium">{cutoffData[type][month].general}%</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">OBC</span>
-                          <span className="font-medium">{cutoffData[type][month].obc}%</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">SC</span>
-                          <span className="font-medium">{cutoffData[type][month].sc}%</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">ST</span>
-                          <span className="font-medium">{cutoffData[type][month].st}%</span>
-                        </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium">NSET Cutoff:</span>
+                        <span className="text-xl font-bold">{nsetCutoffData[month as keyof typeof nsetCutoffData].score}</span>
                       </div>
                     </CardContent>
                   </Card>
@@ -196,9 +154,9 @@ const Cutoffs = () => {
                 <CardContent>
                   <div className="space-y-4">
                     <p>
-                      For {type.toLowerCase()} exams in {selectedYear}, the cutoff percentages show 
-                      {cutoffData[type]["June"].trend === "up" ? " an upward" : " a downward"} trend 
-                      over the first half of the year.
+                      For {type} exams in {selectedYear}, the cutoff percentages show 
+                      a mixed trend with slight variations between months. January intake starts at 36-38%, 
+                      drops to 35% in February, and increases to 38-40% in March.
                     </p>
                     
                     <div className="bg-accent/50 p-4 rounded-md border border-accent">
@@ -207,8 +165,8 @@ const Cutoffs = () => {
                         <div>
                           <h4 className="font-medium">Important Note</h4>
                           <p className="text-sm text-muted-foreground mt-1">
-                            Cutoffs typically increase in the second half of the year due to higher competition. 
-                            Plan your preparation accordingly and aim for scores at least 5% above the latest cutoffs.
+                            Cutoffs typically fluctuate based on the difficulty of the exam and the number of applicants.
+                            Plan your preparation to score at least 5% above the latest cutoff for a safe margin.
                           </p>
                         </div>
                       </div>
