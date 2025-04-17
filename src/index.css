@@ -14,40 +14,40 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    --primary: 0 0% 0%; // Dark grayscale
-    --primary-foreground: 0 0% 100%; // White
+    --primary: 0 0% 0%; /* Dark grayscale */
+    --primary-foreground: 0 0% 100%; /* White */
 
-    --secondary: 0 0% 95%; // Light gray
-    --secondary-foreground: 0 0% 10%; // Almost black
+    --secondary: 0 0% 95%; /* Light gray */
+    --secondary-foreground: 0 0% 10%; /* Almost black */
 
-    --muted: 0 0% 96%; // Very light gray
-    --muted-foreground: 0 0% 45%; // Medium gray
+    --muted: 0 0% 96%; /* Very light gray */
+    --muted-foreground: 0 0% 45%; /* Medium gray */
 
-    --accent: 0 0% 90%; // Soft gray
-    --accent-foreground: 0 0% 0%; // Black
+    --accent: 0 0% 90%; /* Soft gray */
+    --accent-foreground: 0 0% 0%; /* Black */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%; // Light border gray
-    --input: 0 0% 90%; // Input gray
-    --ring: 0 0% 0%; // Black ring
+    --border: 0 0% 90%; /* Light border gray */
+    --input: 0 0% 90%; /* Input gray */
+    --ring: 0 0% 0%; /* Black ring */
 
     --radius: 0.5rem;
 
-    // Enhanced grayscale palette
-    --gray-50: 0 0% 98%; // Almost white
-    --gray-100: 0 0% 96%; // Very light gray
-    --gray-200: 0 0% 90%; // Light gray
-    --gray-300: 0 0% 80%; // Soft medium gray
-    --gray-400: 0 0% 70%; // Medium gray
-    --gray-500: 0 0% 60%; // Neutral gray
-    --gray-600: 0 0% 45%; // Dark medium gray
-    --gray-700: 0 0% 35%; // Dark gray
-    --gray-800: 0 0% 20%; // Very dark gray
-    --gray-900: 0 0% 10%; // Almost black
+    /* Enhanced grayscale palette */
+    --gray-50: 0 0% 98%; /* Almost white */
+    --gray-100: 0 0% 96%; /* Very light gray */
+    --gray-200: 0 0% 90%; /* Light gray */
+    --gray-300: 0 0% 80%; /* Soft medium gray */
+    --gray-400: 0 0% 70%; /* Medium gray */
+    --gray-500: 0 0% 60%; /* Neutral gray */
+    --gray-600: 0 0% 45%; /* Dark medium gray */
+    --gray-700: 0 0% 35%; /* Dark gray */
+    --gray-800: 0 0% 20%; /* Very dark gray */
+    --gray-900: 0 0% 10%; /* Almost black */
 
-    // Sidebar colors with more grayscale variations
+    /* Sidebar colors with more grayscale variations */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 25%;
     --sidebar-primary: 0 0% 10%;
@@ -59,7 +59,7 @@
   }
 
   .dark {
-    // Dark mode grayscale adaptations
+    /* Dark mode grayscale adaptations */
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
 
@@ -69,36 +69,36 @@
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 100%; // Light in dark mode
-    --primary-foreground: 0 0% 0%; // Dark in dark mode
+    --primary: 0 0% 100%; /* Light in dark mode */
+    --primary-foreground: 0 0% 0%; /* Dark in dark mode */
 
-    --secondary: 0 0% 15%; // Dark gray
-    --secondary-foreground: 0 0% 100%; // White
+    --secondary: 0 0% 15%; /* Dark gray */
+    --secondary-foreground: 0 0% 100%; /* White */
 
-    --muted: 0 0% 15%; // Dark muted
-    --muted-foreground: 0 0% 65%; // Light muted
+    --muted: 0 0% 15%; /* Dark muted */
+    --muted-foreground: 0 0% 65%; /* Light muted */
 
-    --accent: 0 0% 15%; // Dark accent
-    --accent-foreground: 0 0% 100%; // White
+    --accent: 0 0% 15%; /* Dark accent */
+    --accent-foreground: 0 0% 100%; /* White */
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%; // Dark border
-    --input: 0 0% 20%; // Dark input
-    --ring: 0 0% 80%; // Light ring
+    --border: 0 0% 20%; /* Dark border */
+    --input: 0 0% 20%; /* Dark input */
+    --ring: 0 0% 80%; /* Light ring */
 
-    // Dark mode grayscale palette
-    --gray-50: 0 0% 10%; // Almost black
-    --gray-100: 0 0% 15%; // Dark gray
-    --gray-200: 0 0% 20%; // Medium dark gray
-    --gray-300: 0 0% 30%; // Neutral dark gray
-    --gray-400: 0 0% 40%; // Light dark gray
-    --gray-500: 0 0% 50%; // Medium gray
-    --gray-600: 0 0% 60%; // Light medium gray
-    --gray-700: 0 0% 70%; // Soft light gray
-    --gray-800: 0 0% 80%; // Very light gray
-    --gray-900: 0 0% 95%; // Almost white
+    /* Dark mode grayscale palette */
+    --gray-50: 0 0% 10%; /* Almost black */
+    --gray-100: 0 0% 15%; /* Dark gray */
+    --gray-200: 0 0% 20%; /* Medium dark gray */
+    --gray-300: 0 0% 30%; /* Neutral dark gray */
+    --gray-400: 0 0% 40%; /* Light dark gray */
+    --gray-500: 0 0% 50%; /* Medium gray */
+    --gray-600: 0 0% 60%; /* Light medium gray */
+    --gray-700: 0 0% 70%; /* Soft light gray */
+    --gray-800: 0 0% 80%; /* Very light gray */
+    --gray-900: 0 0% 95%; /* Almost white */
 
     --sidebar-background: 0 0% 10%;
     --sidebar-foreground: 0 0% 95%;
